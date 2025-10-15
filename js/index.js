@@ -51,3 +51,35 @@ messageForm.addEventListener('submit', function (event) {
 
   messageForm.reset();
 });
+
+async function showRepos() {
+  const listEl = document.getElementById('repo-list');
+  if (!listEl) return;
+  listEl.textContent = 'Loading...';
+
+  try {
+    const response = await fetch('https://api.github.com/users/agirlsdreamcametrue/repos?per_page=100');
+
+  if (!response.ok) {
+    throw new Error('Uh-oh, sorry your request failed!');
+  }
+
+  const repos = await response.json();
+
+  if (!Array.isArray(repos) || repos.length === 0) {
+    listEl.textContent = 'Sorry, there were no repositories found.';
+    return;
+  }
+
+  listEl.innerHTML = repos
+    .map(repo => `<li><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></li>`)
+    .join('');
+
+ } catch (err) {
+  console.error(err);
+  listEl.textContent = 'Whoops, looks like there was an error when loading repositories.';
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', showRepos);
