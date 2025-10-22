@@ -2,19 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Open API Project</title>
+    <title>Open API Project – Alysia Martin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Open API project with two data views" />
+    <!-- Pink theme + layout -->
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>Posts</h1>
-    <ul id="posts"></ul>
+    <header>
+      <h1>Open API Project</h1>
+      <p>Toggle between two data views</p>
+    </header>
 
-    <h2>New Post</h2>
-    <form id="post-form">
-      <input id="title" placeholder="Title" required />
-      <textarea id="body" placeholder="Body" required></textarea>
-      <button type="submit">Create</button>
-    </form>
+    <!-- Option B: tabs to switch endpoints -->
+    <nav class="tabs" role="tablist" aria-label="Data views">
+      <button id="tab-posts" class="tab active" role="tab" aria-selected="true">Posts</button>
+      <button id="tab-users" class="tab" role="tab" aria-selected="false">Users</button>
+    </nav>
 
-    <script src="app.js"></script>
+    <!-- Results are rendered here by JS -->
+    <section id="results" aria-live="polite"></section>
+
+    <!-- Optional: keep your existing "New Post" form as a playground -->
+    <section class="playground">
+      <h2>New Post</h2>
+      <form id="post-form">
+        <input id="title" placeholder="Title" required />
+        <textarea id="body" placeholder="Body" required></textarea>
+        <button type="submit">Create</button>
+      </form>
+      <p class="note">Note: This demo uses JSONPlaceholder; created posts won’t persist.</p>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Alysia Martin</p>
+    </footer>
+
+    <!-- Use index.js (recommended). If you keep app.js, change the filename here. -->
+    <script defer src="index.js"></script>
   </body>
 </html>
